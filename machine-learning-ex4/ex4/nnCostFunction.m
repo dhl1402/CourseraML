@@ -67,15 +67,15 @@ Theta2_grad = zeros(size(Theta2));
 
 A1 = [ones(m, 1) X]; % 5000x401
  
-Z2 = A1 * Theta1';
-A2 = [ones(size(Z2, 1), 1) sigmoid(Z2)];
+Z2 = A1 * Theta1'; % 5000x25
+A2 = [ones(size(Z2, 1), 1) sigmoid(Z2)]; % 5000x26
 
-Z3 = A2 * Theta2';
-A3 = sigmoid(Z3);
+Z3 = A2 * Theta2'; % 5000x10
+A3 = sigmoid(Z3); % 5000x10
 
 for i=1:num_labels
-  h = A3(:,i);
-  yy = y == i;
+  h = A3(:,i); % 5000x1
+  yy = y == i; % 5000x1
   J = J - ((yy' * log(h)) + ((1 - yy)' * log(1 - h))) / m;
 end;
 
